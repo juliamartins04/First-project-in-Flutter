@@ -78,7 +78,7 @@ class _LoginPageState extends State<LoginPage> {
                           width: 1.5,
                         ),
                       ),
-                      hintText: LocaleKeys.screens_login_password.tr(),
+                      hintText: LocaleKeys.screens_login_email.tr(),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5.0),
                         borderSide: const BorderSide(
@@ -95,6 +95,7 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(
                   child: TextFormField(
                     controller: _passwordController,
+                    obscureText: _loginStore.isPasswordVisible,
                     decoration: InputDecoration(
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5.0),
@@ -110,6 +111,20 @@ class _LoginPageState extends State<LoginPage> {
                           color: Colors.black12,
                           width: 1.5,
                         ),
+                      ),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _loginStore.isPasswordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: Theme.of(context).primaryColorDark,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _loginStore.isPasswordVisible =
+                                !_loginStore.isPasswordVisible;
+                          });
+                        },
                       ),
                     ),
                   ),

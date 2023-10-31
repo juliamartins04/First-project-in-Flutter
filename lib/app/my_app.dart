@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:my_first_project/app/modules/home/_export_home_module.dart';
 import 'package:asuka/asuka.dart';
 import 'package:my_first_project/app/modules/login/pages/login_page.dart';
 
@@ -11,7 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       builder: Asuka.builder,
-      title: 'Flutter Demo',
+      title: 'Flutter Project',
       debugShowCheckedModeBanner: false,
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,

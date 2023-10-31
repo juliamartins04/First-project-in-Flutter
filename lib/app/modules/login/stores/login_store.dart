@@ -18,6 +18,9 @@ abstract class BaseLoginStore with Store {
   @observable
   bool isLoading = false;
 
+  @observable
+  bool isPasswordVisible = false;
+
   @action
   Future<bool> getLogin({
     required String username,

@@ -18,6 +18,124 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   late HomeStore _homeStore;
 
+  Widget _listCards() {
+    return Expanded(
+      child: ListView.separated(
+        separatorBuilder: (context, index) => const SizedBox(
+          height: 20.0,
+        ),
+        itemBuilder: (context, index) {
+          HomePeopleListModel? homePeopleListModel =
+              _homeStore.homePeopleListModelObservable.elementAt(index);
+          return Container(
+            decoration: BoxDecoration(
+              color: Colors.blueGrey.withOpacity(0.05),
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0),
+                      child: CircleAvatar(
+                        radius: 30,
+                        backgroundImage: NetworkImage(
+                          _homeStore.homePeopleListModelObservable
+                              .elementAt(index)!
+                              .avatar,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 10.0),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                      homePeopleListModel!.name,
+                                      style: const TextStyle(
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.blue,
+                                      ),
+                                    ),
+                                    Container(
+                                      width: 8.0,
+                                      height: 8.0,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: _homeStore
+                                                .homePeopleListModelObservable
+                                                .elementAt(index)!
+                                                .isOnline
+                                            ? Colors.green
+                                            : Colors.red,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Text(
+                                  homePeopleListModel.profession,
+                                  style: const TextStyle(
+                                    fontSize: 16.0,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                                Text(
+                                  "${LocaleKeys.screens_home_cards_age.tr()}: ${homePeopleListModel.age}",
+                                  style: const TextStyle(
+                                    fontSize: 16.0,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                                Text(
+                                  '${LocaleKeys.screens_home_cards_id.tr()}: ${homePeopleListModel.id}',
+                                  style: const TextStyle(
+                                    fontSize: 16.0,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                TextButton(
+                                  onPressed: () async {
+                                    _clickSeeMore(index: index);
+                                  },
+                                  child: Text(
+                                    LocaleKeys.screens_home_button_see_more
+                                        .tr(),
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          );
+        },
+        itemCount: _homeStore.homePeopleListModelObservable.length,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,140 +150,7 @@ class _HomePageState extends State<HomePage> {
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
                       children: [
-                        Expanded(
-                          child: ListView.separated(
-                            separatorBuilder: (context, index) =>
-                                const SizedBox(
-                              height: 20.0,
-                            ),
-                            itemBuilder: (context, index) {
-                              HomePeopleListModel? homePeopleListModel =
-                                  _homeStore.homePeopleListModelObservable
-                                      .elementAt(index);
-                              return Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.blueGrey.withOpacity(0.05),
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 10.0),
-                                          child: CircleAvatar(
-                                            radius: 30,
-                                            backgroundImage: NetworkImage(
-                                              _homeStore
-                                                  .homePeopleListModelObservable
-                                                  .elementAt(index)!
-                                                  .avatar,
-                                            ),
-                                          ),
-                                        ),
-                                        const SizedBox(width: 10.0),
-                                        Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.end,
-                                              children: [
-                                                Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Row(
-                                                      children: [
-                                                        Text(
-                                                          homePeopleListModel!
-                                                              .name,
-                                                          style:
-                                                              const TextStyle(
-                                                            fontSize: 18.0,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            color: Colors.blue,
-                                                          ),
-                                                        ),
-                                                        Container(
-                                                          width: 8.0,
-                                                          height: 8.0,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            shape:
-                                                                BoxShape.circle,
-                                                            color: _homeStore
-                                                                    .homePeopleListModelObservable
-                                                                    .elementAt(
-                                                                        index)!
-                                                                    .isOnline
-                                                                ? Colors.green
-                                                                : Colors.red,
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    Text(
-                                                      homePeopleListModel
-                                                          .profession,
-                                                      style: const TextStyle(
-                                                        fontSize: 16.0,
-                                                        color: Colors.grey,
-                                                      ),
-                                                    ),
-                                                    Text(
-                                                      "${LocaleKeys.screens_home_cards_age.tr()}: ${homePeopleListModel.age}",
-                                                      style: const TextStyle(
-                                                        fontSize: 16.0,
-                                                        color: Colors.grey,
-                                                      ),
-                                                    ),
-                                                    Text(
-                                                      '${LocaleKeys.screens_home_cards_id.tr()}: ${homePeopleListModel.id}',
-                                                      style: const TextStyle(
-                                                        fontSize: 16.0,
-                                                        color: Colors.grey,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.end,
-                                                  children: [
-                                                    TextButton(
-                                                      onPressed: () async {
-                                                        _clickSeeMore(
-                                                            index: index);
-                                                      },
-                                                      child: Text(
-                                                        LocaleKeys
-                                                            .screens_home_button_see_more
-                                                            .tr(),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                )
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              );
-                            },
-                            itemCount:
-                                _homeStore.homePeopleListModelObservable.length,
-                          ),
-                        ),
+                        _listCards(),
                       ],
                     ),
                   ),

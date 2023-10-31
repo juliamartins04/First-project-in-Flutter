@@ -6,18 +6,16 @@ import '_export_services.dart';
 class HomeService implements HomeServiceInterface {
   @override
   Future<List<HomePeopleListModel?>> getPeople() async {
-    String url = "https://653bfbebd5d6790f5ec7b79a.mockapi.io/api/v1/people";
+    String url = AppConstant.homeURL;
     try {
       final response = await Network.internal().get(
         url: url,
         headers: HomeModelHeader.getHomeModelHeader(),
       );
-      print(response);
       return response
           .map<HomePeopleListModel>((home) => HomePeopleListModel.fromMap(home))
           .toList();
     } catch (error) {
-      print(error);
       rethrow;
     }
   }

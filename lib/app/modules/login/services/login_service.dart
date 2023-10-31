@@ -10,7 +10,7 @@ class LoginService implements LoginServiceInterface {
     required String username,
     required String password,
   }) async {
-    String url = "https://653bfbebd5d6790f5ec7b79a.mockapi.io/api/v1/login";
+    String url = AppConstant.loginURL;
     try {
       final response = await Network.internal().post(
         url: url,
