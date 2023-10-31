@@ -1,0 +1,33 @@
+{
+  "screens": {
+    "login": {
+      "email": "E-mail",
+      "password": "Senha",
+      "enter": "Entrar",
+      "messages": {
+        "login_successfully": "Login efetuado com sucesso :)",
+        "oops_an_error_occurred": "Ops, ocorreu algum erro :/"
+      }
+    },
+    "home": {
+      "await_loading": "Aguarde, carregando...",
+      "button_see_more": "Ver mais",
+      "cards": {
+        "age": "Idade",
+        "id": "ID"
+      },
+      "dialog": {
+        "attention": "Atenção",
+        "are_you_sure_about_that": "Você tem certeza que deseja visualizar um peril indisponível?",
+        "yes": "Sim, visualizar",
+        "close": "Fechar"
+      }
+    },
+    "details": {
+      "details": "Detalhes",
+      "available": "Disponível",
+      "unavailable": "Indisponível",
+      "not_found_details": "Desculpe, o usuário não incluiu os detalhes :/"
+    }
+  }
+}

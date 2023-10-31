@@ -1,0 +1,33 @@
+{
+  "screens": {
+    "login": {
+      "email": "Email",
+      "password": "Password",
+      "enter": "Enter",
+      "messages": {
+        "login_successfully": "Login successfully :)",
+        "oops_an_error_occurred": "Oops, an error occurred :/"
+      }
+    },
+    "home": {
+      "await_loading": "Await, loading...",
+      "button_see_more": "See more",
+      "cards": {
+        "age": "Age",
+        "id": "ID"
+      },
+      "dialog": {
+        "attention": "Attention",
+        "are_you_sure_about_that": "Are you sure you want to view an unavailable profile?",
+        "yes": "Yes, view",
+        "close": "Close"
+      }
+    },
+    "details": {
+      "details": "Details",
+      "available": "Available",
+      "unavailable": "Unavailable",
+      "not_found_details": "Sorry, the user did not include details :/"
+    }
+  }
+}
